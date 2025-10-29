@@ -1,6 +1,6 @@
-# Python REST API Template
+# Production-Ready Python REST API Template
 
-A professional, modern template for building robust and containerized Python REST APIs. This project provides a generic blueprint for structuring, containerizing, documenting, and automating a web service.
+This repository provides a comprehensive, professional blueprint for building robust, containerized, and production-ready REST APIs in Python using FastAPI. Its primary purpose is to allow any developer to clone or template this project and immediately start building business logic, without worrying about setup, containerization, or CI/CD.
 
 ---
 
@@ -17,7 +17,8 @@ A professional, modern template for building robust and containerized Python RES
 - **FastAPI**: A modern, high-performance web framework for building APIs.
 - **Docker Ready**: Fully containerized with a multi-stage `Dockerfile` and `docker-compose` for easy development and deployment.
 - **CI/CD Automation**: GitHub Actions workflow that automatically builds, tests, and pushes the image to Docker Hub.
-- **Professional Structure**: Clear project layout and version control practices.
+- **API Auto-Documentation**: Interactive API documentation served at `/docs` (Swagger UI) and `/redoc` (ReDoc).
+- **Professional Structure**: Clear project layout and a proven, issue-driven workflow.
 - **Legal Compliance**: Includes `LICENSE` and a generated `3RD-PARTY-LICENSES.md` file.
 
 ## Getting Started
@@ -36,13 +37,41 @@ A professional, modern template for building robust and containerized Python RES
     ```
 
 2.  **Launch the application using Docker Compose:**
-    This command will build the image and start the container.
+    This command will build the image and start the container with live-reloading enabled.
     ```bash
     docker-compose up --build
     ```
 
-3.  **Access the API:**
-    The API will be available at `http://localhost:8000`. You can access the health check endpoint to verify it's running.
+3.  **Access the Service:**
+    Once the container is running, the following endpoints are available:
+    - **Health Check**: `http://localhost:8000/`
+    - **Interactive API Docs (Swagger)**: `http://localhost:8000/docs`
+    - **Alternative API Docs (ReDoc)**: `http://localhost:8000/redoc`
+
+## How to Use This Template
+
+To use this project as the foundation for your own API, follow these steps:
+
+1.  **Create Your Repository:**
+    Click the "**Use this template**" button at the top of the GitHub repository page to create a new repository with a copy of this project's files.
+
+2.  **Update the `README.md`:**
+    Edit this `README.md` file to describe your new project. Change the title, description, and Docker Hub username.
+
+3.  **Update the CI/CD Workflow:**
+    - Open `.github/workflows/ci.yml`.
+    - On line 58, change `hemanth0411/python-api-template` to your Docker Hub username and desired image name.
+    - Configure the `DOCKERHUB_USERNAME` and `DOCKERHUB_TOKEN` secrets in your new repository's settings.
+
+4.  **Update Application Metadata:**
+    - Open `src/main.py`.
+    - Change the `title`, `description`, and `version` in the `FastAPI` app instance to match your project.
+
+5.  **Update the `LICENSE`:**
+    - Open the `LICENSE` file and change the `[year]` and `[fullname]` to your own.
+
+6.  **Start Developing!**
+    You are now ready to add your own Pydantic models and API endpoints in the `src/` directory.
 
 ## Project Structure
 
@@ -61,12 +90,8 @@ A professional, modern template for building robust and containerized Python RES
 └── requirements.txt        # Python package dependencies
 ```
 
-## Contributing
-
-This project follows an issue-driven workflow. All changes are managed via GitHub Issues and submitted via Pull Requests. Please open an issue to discuss a change before submitting a PR.
-
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details. The licenses for third-party dependencies are documented in the [3RD-PARTY-LICENSES.md](3RD-PARTY-LICENSES.md) file.
-
+```
 

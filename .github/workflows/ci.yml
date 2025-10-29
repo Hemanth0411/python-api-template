@@ -58,7 +58,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: hemanth0411/python-api-template # IMPORTANT: Change this!
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/python-api-template 
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
