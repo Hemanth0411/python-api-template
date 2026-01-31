@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from api.endpoints import items  
+from api.v1.api import api_router
 from core.config import settings
 from core.logging_config import setup_logging
 from api.middleware import log_requests
@@ -27,7 +27,7 @@ app = FastAPI(
 
 app.middleware("http")(log_requests)
 
-app.include_router(items.router, prefix="/items", tags=["Items"])
+app.include_router(api_router, prefix="/api/v1")
 
 @app.get("/", tags=["Default"])
 def read_root():
