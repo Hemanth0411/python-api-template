@@ -1,6 +1,10 @@
 from fastapi import FastAPI
 from api.endpoints import items  
 from core.config import settings
+from core.logging_config import setup_logging
+from api.middleware import log_requests
+
+setup_logging()
 
 # Define tags for Swagger UI Documentation
 tags_metadata = [
@@ -20,6 +24,8 @@ app = FastAPI(
     version=settings.APP_VERSION,
     openapi_tags=tags_metadata
 )
+
+app.middleware("http")(log_requests)
 
 app.include_router(items.router, prefix="/items", tags=["Items"])
 
