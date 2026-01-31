@@ -1,8 +1,10 @@
+from fastapi import FastAPI
+
 from api.middleware import log_requests
 from api.v1.api import api_router
 from core.config import settings
 from core.logging_config import setup_logging
-from fastapi import FastAPI
+
 
 setup_logging()
 
