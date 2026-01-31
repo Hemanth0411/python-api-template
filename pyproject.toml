@@ -1,0 +1,21 @@
+[tool.ruff]
+# Target Python version
+target-version = "py311"
+line-length = 88
+src = ["src"]
+
+[tool.ruff.lint]
+# Enable specific rule sets
+# E = Error, F = Pyflakes, I = Isort (Imports), B = Bugbear
+select = ["E", "F", "I", "B"]
+# B008 is ignored because FastAPI uses Depends() in function signatures by design
+ignore = ["B008"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["api", "core", "schemas", "services", "src"]
+lines-after-imports = 2
+
+[tool.ruff.format]
+# Personalize the formatter (Black style)
+quote-style = "double"
+indent-style = "space"

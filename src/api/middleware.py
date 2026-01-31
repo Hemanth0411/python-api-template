@@ -1,14 +1,16 @@
-import uuid
 import time
+import uuid
+
 from fastapi import Request
 from loguru import logger
+
 
 async def log_requests(request: Request, call_next):
     """
     Middleware to generate a unique request ID and log request details.
     """
     request_id = str(uuid.uuid4())
-    
+
     with logger.contextualize(request_id=request_id):
         start_time = time.time()
 
