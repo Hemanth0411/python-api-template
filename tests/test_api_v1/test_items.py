@@ -1,6 +1,5 @@
 import pytest
 
-@pytest.mark.asyncio
 async def test_read_item(client):
     """Checks if we can retrieve an item correctly."""
     response = await client.get("/api/v1/items/1")
@@ -10,7 +9,6 @@ async def test_read_item(client):
     assert data["item_id"] == 1
     assert "name" in data
 
-@pytest.mark.asyncio
 async def test_create_item(client):
     """Checks if we can create an item."""
     new_item = {
@@ -23,7 +21,6 @@ async def test_create_item(client):
     assert response.status_code == 201
     assert response.json()["name"] == "Test Item"
 
-@pytest.mark.asyncio
 async def test_delete_item_not_found(client):
     """Checks if the 404 logic we wrote actually works."""
     response = await client.delete("/api/v1/items/404")
