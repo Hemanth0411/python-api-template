@@ -21,8 +21,8 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Placeholder for Linting & Testing
-        run: echo "Linting and testing steps would go here in the future."
+      - name: Run Tests
+        run: pytest tests
 
   # --- Job 2: Build Image for Pull Request Validation ---
   # This job runs ONLY for pull requests. It builds the image but does NOT push it.
