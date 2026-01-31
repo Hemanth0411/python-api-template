@@ -1,0 +1,15 @@
+[tool.ruff]
+# Target Python version
+target-version = "py311"
+line-length = 88
+
+[tool.ruff.lint]
+# Enable specific rule sets
+# E = Error, F = Pyflakes, I = Isort (Imports), B = Bugbear
+select = ["E", "F", "I", "B"]
+ignore = []
+
+[tool.ruff.format]
+# Personalize the formatter (Black style)
+quote-style = "double"
+indent-style = "space"
