@@ -12,7 +12,7 @@ select = ["E", "F", "I", "B"]
 ignore = ["B008"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["api", "core", "schemas", "services"]
+known-first-party = ["api", "core", "schemas", "services", "src"]
 lines-after-imports = 2
 
 [tool.ruff.format]
