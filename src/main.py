@@ -1,7 +1,8 @@
 from fastapi import FastAPI
-from api.endpoints import items  # Import the items router module
+from api.endpoints import items  
+from core.config import settings
 
-# --- Application Metadata ---
+# Define tags for Swagger UI Documentation
 tags_metadata = [
     {
         "name": "Default",
@@ -14,15 +15,12 @@ tags_metadata = [
 ]
 
 app = FastAPI(
-    title="Python API Template",
+    title=settings.APP_TITLE,
     description="Refactored for scalability using Layered Architecture.",
-    version="0.2.0",
+    version=settings.APP_VERSION,
     openapi_tags=tags_metadata
 )
 
-# --- Router Registration ---
-# This 'glues' the items routes to our main application.
-# The prefix="/items" means all routes in items.py now start with /items/
 app.include_router(items.router, prefix="/items", tags=["Items"])
 
 @app.get("/", tags=["Default"])
