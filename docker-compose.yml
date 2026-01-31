@@ -9,6 +9,7 @@ services:
       # Mount the source code directory into the container.
       # This enables live-reloading during development.
       - ./src:/app
+      - ./tests:/tests
       - ./.env:/app/.env
       - ./pyproject.toml:/pyproject.toml
       - ./pytest.ini:/pytest.ini
