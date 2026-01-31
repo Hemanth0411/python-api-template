@@ -2,6 +2,7 @@
 # Target Python version
 target-version = "py311"
 line-length = 88
+src = ["src"]
 
 [tool.ruff.lint]
 # Enable specific rule sets
@@ -9,6 +10,9 @@ line-length = 88
 select = ["E", "F", "I", "B"]
 # B008 is ignored because FastAPI uses Depends() in function signatures by design
 ignore = ["B008"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["api", "core", "schemas", "services"]
 
 [tool.ruff.format]
 # Personalize the formatter (Black style)
