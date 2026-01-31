@@ -11,3 +11,14 @@ class Item(BaseModel):
     description: Union[str, None] = Field(default=None, example="A powerful computing device.")
     price: float = Field(..., example=1200.50)
     tax: Union[float, None] = Field(default=None, example=120.05)
+
+class ItemCreate(BaseModel):
+    """
+    Schema for creating a new item. 
+    Notice we don't include 'item_id' here because 
+    the server/database generates that!
+    """
+    name: str = Field(..., min_length=1, example="Smartphone")
+    description: Union[str, None] = Field(default=None, example="A high-end mobile device.")
+    price: float = Field(..., gt=0, example=699.99)
+    tax: Union[float, None] = Field(default=None, example=55.99)

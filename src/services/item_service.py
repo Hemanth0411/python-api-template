@@ -1,5 +1,6 @@
 from typing import Union
-from schemas.item import Item
+from fastapi import HTTPException
+from schemas.item import Item, ItemCreate
 
 class ItemService:
     """
@@ -15,3 +16,14 @@ class ItemService:
             "q": q,
             "description": "Retrieved via ItemService"
         }
+    
+    def create_item(self, item_data: ItemCreate) -> Item:
+        # Business logic: In a real app, save to DB here.
+        # For now, we simulate by adding an ID
+        return Item(item_id=999, **item_data.model_dump())
+
+    def delete_item(self, item_id: int):
+        # Business logic: Check if exists, then delete.
+        if item_id == 404:
+            raise HTTPException(status_code=404, detail="Item not found")
+        return True
