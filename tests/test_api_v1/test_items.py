@@ -1,5 +1,3 @@
-import pytest
-
 async def test_read_item(client):
     """Checks if we can retrieve an item correctly."""
     response = await client.get("/api/v1/items/1")
