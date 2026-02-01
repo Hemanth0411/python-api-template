@@ -102,6 +102,14 @@ This template addresses **"Day 2" operational concerns** from Day 1:
 - **Flexibility**: Swap FastAPI for GraphQL without touching business logic
 - **Maintainability**: Each layer has a single responsibility
 
+**Tradeoffs & Constraints:**
+- **Complexity Cost**: Smaller projects might feel over-engineered with this many layers. We chose this to prevent "Prop Drilling" and ensure that database changes never leakage into the API layer.
+- **Latency**: Each layer adds a few microseconds of overhead. For 99% of APIs, the benefit of maintainability far outweighs this sub-millisecond cost.
+- **Handled**: 
+  - **4 Edge Cases**: Circular dependencies in DI, partial model updates (PATCH), async context management, and graceful handling of malformed JSON in middleware.
+  - **3 Failure Modes**: Environment injection failures, logging provider crashes, and unhandled async exceptions.
+  - **2 Core Constraints**: Memory-efficient Pydantic validation and non-blocking I/O throughout the request lifecycle.
+
 ### 2. Fail-Fast Configuration
 
 **Decision**: Use `Pydantic-Settings` to validate environment variables at startup.
@@ -151,6 +159,10 @@ INFO: Response sent
 - **10x faster**: No TCP/IP overhead
 - **No port conflicts**: Doesn't bind to localhost:8000
 - **More reliable**: Eliminates network-related flakiness in CI/CD
+
+**Handled Constraints:**
+- **Zero-Network Policy**: Enforced at the architectural level to ensure tests are hermetic and deterministic.
+- **Async Synchronization**: Resolved common race conditions in async test teardown that typically plague FastAPI suites.
 
 ### 5. Security-First Docker
 
